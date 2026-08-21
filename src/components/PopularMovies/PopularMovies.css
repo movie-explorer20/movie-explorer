@@ -1,0 +1,480 @@
+.popular-movies-section {
+  width: 100%;
+  padding: 85px 0;
+  background: #080808;
+  color: #ffffff;
+}
+
+.popular-container {
+  width: min(1400px, 92%);
+  margin: 0 auto;
+}
+
+/* =========================================
+   HEADER
+========================================= */
+
+.popular-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 30px;
+  margin-bottom: 35px;
+}
+
+.popular-eyebrow {
+  display: block;
+  margin-bottom: 10px;
+
+  color: #f5c518;
+
+  font-size: 12px;
+  font-weight: 800;
+
+  letter-spacing: 3px;
+}
+
+.popular-heading h2 {
+  margin: 0;
+
+  color: #ffffff;
+
+  font-size: clamp(32px, 4vw, 50px);
+  line-height: 1;
+
+  letter-spacing: -1.5px;
+}
+
+.popular-heading p {
+  margin: 13px 0 0;
+
+  color: #8f8f8f;
+
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+/* =========================================
+   VIEW ALL
+========================================= */
+
+.popular-view-all {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 11px 17px;
+
+  border: 1px solid
+    rgba(255, 255, 255, 0.15);
+
+  border-radius: 999px;
+
+  background: rgba(255, 255, 255, 0.04);
+
+  color: #ffffff;
+
+  font-size: 13px;
+  font-weight: 700;
+
+  text-decoration: none;
+
+  transition:
+    background 0.25s ease,
+    border-color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.popular-view-all span {
+  color: #f5c518;
+  font-size: 17px;
+}
+
+.popular-view-all:hover {
+  transform: translateY(-2px);
+
+  border-color: rgba(245, 197, 24, 0.5);
+
+  background: rgba(245, 197, 24, 0.08);
+}
+
+/* =========================================
+   GRID
+========================================= */
+
+.popular-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(6, minmax(0, 1fr));
+
+  gap: 20px;
+}
+
+/* =========================================
+   CARD
+========================================= */
+
+.popular-card {
+  min-width: 0;
+
+  overflow: hidden;
+
+  border-radius: 13px;
+
+  background: #111111;
+
+  color: #ffffff;
+
+  text-decoration: none;
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    background 0.3s ease;
+}
+
+.popular-card:hover {
+  transform: translateY(-8px);
+
+  background: #161616;
+
+  box-shadow:
+    0 20px 45px rgba(0, 0, 0, 0.5);
+}
+
+/* =========================================
+   POSTER
+========================================= */
+
+.popular-poster-wrapper {
+  position: relative;
+
+  width: 100%;
+
+  aspect-ratio: 2 / 3;
+
+  overflow: hidden;
+
+  background: #171717;
+}
+
+.popular-poster {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  transition:
+    transform 0.45s ease;
+}
+
+.popular-card:hover .popular-poster {
+  transform: scale(1.06);
+}
+
+/* =========================================
+   OVERLAY
+========================================= */
+
+.popular-card-overlay {
+  position: absolute;
+
+  inset: 0;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  background:
+    linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.8),
+      rgba(0, 0, 0, 0.08)
+    );
+
+  opacity: 0;
+
+  transition:
+    opacity 0.3s ease;
+}
+
+.popular-card:hover
+.popular-card-overlay {
+  opacity: 1;
+}
+
+.popular-play {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 48px;
+  height: 48px;
+
+  border: 1px solid
+    rgba(255, 255, 255, 0.4);
+
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.12);
+
+  backdrop-filter: blur(10px);
+
+  color: #ffffff;
+
+  font-size: 14px;
+
+  transform: scale(0.8);
+
+  transition:
+    transform 0.3s ease;
+}
+
+.popular-card:hover
+.popular-play {
+  transform: scale(1);
+}
+
+/* =========================================
+   RATING
+========================================= */
+
+.popular-rating {
+  position: absolute;
+
+  top: 10px;
+  right: 10px;
+
+  padding: 6px 8px;
+
+  border-radius: 6px;
+
+  background: rgba(0, 0, 0, 0.78);
+
+  color: #f5c518;
+
+  font-size: 11px;
+  font-weight: 800;
+
+  backdrop-filter: blur(8px);
+}
+
+/* =========================================
+   INFO
+========================================= */
+
+.popular-card-info {
+  padding: 14px 13px 16px;
+}
+
+.popular-card-info h3 {
+  margin: 0;
+
+  color: #ffffff;
+
+  font-size: 14px;
+  font-weight: 700;
+
+  line-height: 1.35;
+
+  white-space: nowrap;
+
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+}
+
+.popular-card-meta {
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  margin-top: 8px;
+
+  color: #777777;
+
+  font-size: 11px;
+}
+
+.popular-card-meta span:last-child {
+  color: #aaaaaa;
+}
+
+/* =========================================
+   LOADING
+========================================= */
+
+.popular-loading {
+  min-height: 260px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 15px;
+
+  color: #888888;
+}
+
+.popular-spinner {
+  width: 40px;
+  height: 40px;
+
+  border: 3px solid
+    rgba(255, 255, 255, 0.12);
+
+  border-top-color: #f5c518;
+
+  border-radius: 50%;
+
+  animation:
+    popularSpin 0.8s linear infinite;
+}
+
+@keyframes popularSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* =========================================
+   ERROR
+========================================= */
+
+.popular-error {
+  padding: 50px 20px;
+
+  border: 1px solid
+    rgba(255, 255, 255, 0.08);
+
+  border-radius: 12px;
+
+  background: #101010;
+
+  text-align: center;
+
+  color: #888888;
+}
+
+.popular-error p {
+  margin: 0;
+}
+
+/* =========================================
+   LARGE TABLET
+========================================= */
+
+@media (max-width: 1200px) {
+  .popular-grid {
+    grid-template-columns:
+      repeat(5, minmax(0, 1fr));
+  }
+}
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 1000px) {
+  .popular-grid {
+    grid-template-columns:
+      repeat(4, minmax(0, 1fr));
+  }
+}
+
+/* =========================================
+   SMALL TABLET
+========================================= */
+
+@media (max-width: 720px) {
+  .popular-movies-section {
+    padding: 65px 0;
+  }
+
+  .popular-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .popular-grid {
+    grid-template-columns:
+      repeat(3, minmax(0, 1fr));
+
+    gap: 15px;
+  }
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 520px) {
+  .popular-container {
+    width: 90%;
+  }
+
+  .popular-heading h2 {
+    font-size: 34px;
+  }
+
+  .popular-heading p {
+    font-size: 14px;
+  }
+
+  .popular-grid {
+    display: flex;
+
+    gap: 14px;
+
+    overflow-x: auto;
+
+    padding-bottom: 12px;
+
+    scroll-snap-type: x mandatory;
+
+    scrollbar-width: none;
+  }
+
+  .popular-grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .popular-card {
+    flex: 0 0 155px;
+
+    scroll-snap-align: start;
+  }
+
+  .popular-card-info {
+    padding: 12px;
+  }
+
+  .popular-card-info h3 {
+    font-size: 13px;
+  }
+
+  .popular-view-all {
+    font-size: 12px;
+  }
+}
+
+/* =========================================
+   VERY SMALL MOBILE
+========================================= */
+
+@media (max-width: 380px) {
+  .popular-card {
+    flex-basis: 145px;
+  }
+}

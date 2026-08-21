@@ -1,0 +1,575 @@
+/* =====================================================
+   TRENDING MOVIES
+   PREMIUM MOVIE EXPLORER
+===================================================== */
+
+.trending {
+  width: min(1400px, 94%);
+  margin: 0 auto;
+  padding: 90px 0 110px;
+  color: #ffffff;
+}
+
+/* =====================================================
+   PAGE HEADER
+===================================================== */
+
+.trending-page-header {
+  margin-bottom: 58px;
+}
+
+.trending-page-header > span {
+  display: inline-block;
+
+  margin-bottom: 13px;
+
+  color: #f5c518;
+
+  font-size: 11px;
+  font-weight: 800;
+
+  letter-spacing: 3px;
+}
+
+.trending-page-header h1 {
+  margin: 0;
+
+  color: #ffffff;
+
+  font-size: clamp(2.4rem, 5vw, 4.5rem);
+
+  line-height: 1;
+
+  letter-spacing: -2px;
+}
+
+.trending-page-header p {
+  max-width: 650px;
+
+  margin: 17px 0 0;
+
+  color: #8e919c;
+
+  font-size: 15px;
+
+  line-height: 1.7;
+}
+
+/* =====================================================
+   SECTION
+===================================================== */
+
+.trend-section {
+  position: relative;
+
+  margin-bottom: 70px;
+}
+
+/* =====================================================
+   SECTION HEADER
+===================================================== */
+
+.trend-section-header {
+  display: flex;
+
+  align-items: flex-end;
+
+  justify-content: space-between;
+
+  gap: 25px;
+
+  margin-bottom: 25px;
+}
+
+.trend-section-label {
+  display: block;
+
+  margin-bottom: 7px;
+
+  color: #f5c518;
+
+  font-size: 9px;
+
+  font-weight: 800;
+
+  letter-spacing: 2.5px;
+}
+
+.trend-section-header h2 {
+  margin: 0;
+
+  color: #ffffff;
+
+  font-size: clamp(1.6rem, 3vw, 2.25rem);
+
+  font-weight: 750;
+
+  letter-spacing: -0.8px;
+}
+
+.trend-section-header p {
+  margin: 8px 0 0;
+
+  color: #777b86;
+
+  font-size: 13px;
+}
+
+/* =====================================================
+   SCROLL HINT
+===================================================== */
+
+.scroll-hint {
+  flex-shrink: 0;
+
+  padding: 8px 13px;
+
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.08);
+
+  border-radius: 999px;
+
+  background:
+    rgba(255, 255, 255, 0.035);
+
+  color: #777b86;
+
+  font-size: 10px;
+
+  font-weight: 700;
+
+  letter-spacing: 0.5px;
+
+  transition:
+    color 0.2s ease,
+    border-color 0.2s ease,
+    background 0.2s ease;
+}
+
+.trend-section:hover .scroll-hint {
+  color: #f5c518;
+
+  border-color:
+    rgba(245, 197, 24, 0.2);
+
+  background:
+    rgba(245, 197, 24, 0.04);
+}
+
+/* =====================================================
+   HORIZONTAL MOVIE SCROLL
+===================================================== */
+
+.movie-horizontal-scroll {
+  display: flex;
+
+  width: 100%;
+
+  gap: 20px;
+
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  padding:
+    5px
+    5px
+    20px;
+
+  scroll-behavior: smooth;
+
+  scroll-snap-type: x proximity;
+
+  overscroll-behavior-x: contain;
+
+  scrollbar-width: thin;
+
+  scrollbar-color:
+    rgba(245, 197, 24, 0.45)
+    rgba(255, 255, 255, 0.04);
+}
+
+/* =====================================================
+   CHROME / EDGE SCROLLBAR
+===================================================== */
+
+.movie-horizontal-scroll::-webkit-scrollbar {
+  height: 6px;
+}
+
+.movie-horizontal-scroll::-webkit-scrollbar-track {
+  background:
+    rgba(255, 255, 255, 0.035);
+
+  border-radius: 999px;
+}
+
+.movie-horizontal-scroll::-webkit-scrollbar-thumb {
+  background:
+    rgba(245, 197, 24, 0.45);
+
+  border-radius: 999px;
+}
+
+.movie-horizontal-scroll::-webkit-scrollbar-thumb:hover {
+  background:
+    rgba(245, 197, 24, 0.7);
+}
+
+/* =====================================================
+   MOVIE SLIDE
+===================================================== */
+
+.movie-slide {
+  flex: 0 0 calc(
+    (100% - 100px) / 6
+  );
+
+  min-width: 0;
+
+  scroll-snap-align: start;
+}
+
+/* =====================================================
+   CARD HEIGHT
+===================================================== */
+
+.movie-slide .movie-card {
+  width: 100%;
+}
+
+/* =====================================================
+   TV CARD
+===================================================== */
+
+.tv-card {
+  height: 100%;
+}
+
+/* =====================================================
+   TV POSTER
+===================================================== */
+
+.tv-card .movie-poster {
+  position: relative;
+}
+
+/* =====================================================
+   POSTER PLACEHOLDER
+===================================================== */
+
+.poster-placeholder {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  height: 100%;
+
+  background:
+    linear-gradient(
+      145deg,
+      #18191e,
+      #101116
+    );
+
+  color: #686b75;
+
+  font-size: 12px;
+}
+
+/* =====================================================
+   SKELETON
+===================================================== */
+
+.movie-skeleton {
+  position: relative;
+
+  width: 100%;
+
+  aspect-ratio: 2 / 3;
+
+  overflow: hidden;
+
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.05);
+
+  border-radius: 14px;
+
+  background:
+    #15161b;
+}
+
+/* =====================================================
+   SKELETON SHIMMER
+===================================================== */
+
+.skeleton-shimmer {
+  position: absolute;
+
+  top: 0;
+  left: -100%;
+
+  width: 70%;
+  height: 100%;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.07),
+      transparent
+    );
+
+  animation:
+    skeleton-shimmer 1.4s
+    infinite;
+}
+
+@keyframes skeleton-shimmer {
+  100% {
+    left: 130%;
+  }
+}
+
+/* =====================================================
+   INITIAL LOADING
+===================================================== */
+
+.initial-loading {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  min-height: 350px;
+}
+
+/* =====================================================
+   BIG SPINNER
+===================================================== */
+
+.big-spinner {
+  width: 38px;
+  height: 38px;
+
+  border:
+    3px solid
+    rgba(255, 255, 255, 0.08);
+
+  border-top-color:
+    #f5c518;
+
+  border-radius: 50%;
+
+  animation:
+    trending-spin 0.8s
+    linear infinite;
+}
+
+@keyframes trending-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* =====================================================
+   LARGE DESKTOP
+===================================================== */
+
+@media (max-width: 1250px) {
+
+  .trending {
+    width: 93%;
+  }
+
+  .movie-slide {
+    flex: 0 0 calc(
+      (100% - 80px) / 5
+    );
+  }
+}
+
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media (max-width: 1000px) {
+
+  .trending {
+    width: 92%;
+
+    padding-top: 80px;
+  }
+
+  .movie-slide {
+    flex: 0 0 calc(
+      (100% - 60px) / 4
+    );
+  }
+
+  .movie-horizontal-scroll {
+    gap: 16px;
+  }
+
+  .trend-section {
+    margin-bottom: 60px;
+  }
+}
+
+/* =====================================================
+   SMALL TABLET
+===================================================== */
+
+@media (max-width: 800px) {
+
+  .movie-slide {
+    flex: 0 0 calc(
+      (100% - 44px) / 3
+    );
+  }
+
+  .trend-section-header {
+    align-items: flex-start;
+  }
+
+  .scroll-hint {
+    display: none;
+  }
+}
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 600px) {
+
+  .trending {
+    width: 94%;
+
+    padding:
+      60px 0
+      80px;
+  }
+
+  .trending-page-header {
+    margin-bottom: 42px;
+  }
+
+  .trending-page-header > span {
+    font-size: 9px;
+
+    letter-spacing: 2.5px;
+  }
+
+  .trending-page-header h1 {
+    font-size: 2.35rem;
+
+    letter-spacing: -1.5px;
+  }
+
+  .trending-page-header p {
+    margin-top: 13px;
+
+    font-size: 13px;
+  }
+
+  .trend-section {
+    margin-bottom: 50px;
+  }
+
+  .trend-section-header {
+    display: block;
+
+    margin-bottom: 18px;
+  }
+
+  .trend-section-header h2 {
+    font-size: 1.55rem;
+  }
+
+  .trend-section-header p {
+    font-size: 12px;
+  }
+
+  .movie-horizontal-scroll {
+    gap: 13px;
+
+    padding:
+      3px
+      3px
+      15px;
+
+    scrollbar-width: none;
+
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .movie-horizontal-scroll::-webkit-scrollbar {
+    display: none;
+  }
+
+  .movie-slide {
+    flex: 0 0 calc(
+      (100% - 13px) / 2
+    );
+  }
+}
+
+/* =====================================================
+   SMALL PHONE
+===================================================== */
+
+@media (max-width: 400px) {
+
+  .trending {
+    width: 93%;
+  }
+
+  .trending-page-header h1 {
+    font-size: 2rem;
+  }
+
+  .trend-section-header h2 {
+    font-size: 1.4rem;
+  }
+
+  .movie-horizontal-scroll {
+    gap: 11px;
+  }
+
+  .movie-slide {
+    flex: 0 0 calc(
+      (100% - 11px) / 2
+    );
+  }
+}
+
+/* =====================================================
+   VERY SMALL PHONE
+===================================================== */
+
+@media (max-width: 330px) {
+
+  .movie-slide {
+    flex: 0 0 78%;
+  }
+}
+
+/* =====================================================
+   REDUCED MOTION
+===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .movie-horizontal-scroll {
+    scroll-behavior: auto;
+  }
+
+  .skeleton-shimmer,
+  .big-spinner {
+    animation: none;
+  }
+}

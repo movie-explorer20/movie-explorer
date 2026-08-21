@@ -1,0 +1,407 @@
+/* =====================================================
+   MOVIE CARD
+   PREMIUM MOVIE EXPLORER
+===================================================== */
+
+.movie-card {
+  position: relative;
+  min-width: 0;
+  overflow: hidden;
+
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 14px;
+
+  background: #111217;
+
+  box-shadow:
+    0 12px 35px rgba(0, 0, 0, 0.28);
+
+  transition:
+    transform 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+/* =====================================================
+   CARD HOVER
+===================================================== */
+
+.movie-card:hover {
+  transform: translateY(-7px);
+
+  border-color:
+    rgba(245, 197, 24, 0.4);
+
+  box-shadow:
+    0 20px 45px rgba(0, 0, 0, 0.42),
+    0 0 25px rgba(245, 197, 24, 0.07);
+}
+
+/* =====================================================
+   POSTER
+===================================================== */
+
+.movie-poster {
+  position: relative;
+
+  display: block;
+
+  width: 100%;
+
+  aspect-ratio: 2 / 3;
+
+  overflow: hidden;
+
+  background: #18191e;
+
+  text-decoration: none;
+}
+
+.movie-poster img {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  transition:
+    transform 0.45s ease,
+    filter 0.45s ease;
+}
+
+/* Poster zoom */
+
+.movie-card:hover .movie-poster img {
+  transform: scale(1.05);
+
+  filter: brightness(0.88);
+}
+
+/* =====================================================
+   INFORMATION
+===================================================== */
+
+.movie-card-info {
+  padding: 14px 14px 15px;
+}
+
+/* =====================================================
+   TITLE + RATING
+===================================================== */
+
+.movie-title-row {
+  display: flex;
+
+  align-items: flex-start;
+
+  justify-content: space-between;
+
+  gap: 8px;
+
+  min-width: 0;
+}
+
+.movie-title-row h3 {
+  min-width: 0;
+
+  margin: 0;
+
+  overflow: hidden;
+
+  color: #ffffff;
+
+  font-size: 14px;
+
+  font-weight: 700;
+
+  line-height: 1.35;
+
+  white-space: nowrap;
+
+  text-overflow: ellipsis;
+}
+
+/* =====================================================
+   RATING
+===================================================== */
+
+.movie-rating {
+  flex-shrink: 0;
+
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 4px 7px;
+
+  border:
+    1px solid
+    rgba(245, 197, 24, 0.22);
+
+  border-radius: 6px;
+
+  background:
+    rgba(245, 197, 24, 0.08);
+
+  color: #f5c518;
+
+  font-size: 10px;
+
+  font-weight: 750;
+
+  white-space: nowrap;
+}
+
+/* =====================================================
+   YEAR
+===================================================== */
+
+.movie-year {
+  margin-top: 7px;
+
+  color: #777b86;
+
+  font-size: 12px;
+
+  font-weight: 500;
+}
+
+/* =====================================================
+   ACTION AREA
+===================================================== */
+
+.movie-actions {
+  display: flex;
+
+  width: 100%;
+
+  margin-top: 13px;
+}
+
+/* =====================================================
+   DETAILS BUTTON
+===================================================== */
+
+.details-btn {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+
+  min-height: 38px;
+
+  padding: 0 12px;
+
+  border:
+    1px solid
+    #f5c518;
+
+  border-radius: 8px;
+
+  background: #f5c518;
+
+  color: #080808;
+
+  font-family: inherit;
+
+  font-size: 12px;
+
+  font-weight: 800;
+
+  text-decoration: none;
+
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.details-btn:hover {
+  transform: translateY(-2px);
+
+  background: #ffd83d;
+
+  box-shadow:
+    0 8px 20px
+    rgba(245, 197, 24, 0.2);
+}
+
+.details-btn:active {
+  transform: translateY(0);
+}
+
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media (max-width: 1000px) {
+
+  .movie-card-info {
+    padding: 12px;
+  }
+
+  .movie-title-row h3 {
+    font-size: 13px;
+  }
+
+  .movie-rating {
+    font-size: 9px;
+
+    padding:
+      4px 6px;
+  }
+
+  .movie-year {
+    font-size: 11px;
+  }
+
+  .details-btn {
+    min-height: 36px;
+
+    font-size: 11px;
+  }
+}
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 700px) {
+
+  .movie-card {
+    border-radius: 11px;
+  }
+
+  .movie-card-info {
+    padding: 10px;
+  }
+
+  .movie-title-row {
+    display: block;
+  }
+
+  .movie-title-row h3 {
+    margin-bottom: 6px;
+
+    font-size: 12px;
+  }
+
+  .movie-rating {
+    display: inline-flex;
+
+    padding:
+      3px 6px;
+
+    font-size: 9px;
+  }
+
+  .movie-year {
+    margin-top: 6px;
+
+    font-size: 11px;
+  }
+
+  .movie-actions {
+    margin-top: 10px;
+  }
+
+  .details-btn {
+    min-height: 34px;
+
+    font-size: 11px;
+
+    border-radius: 7px;
+  }
+
+  .movie-card:hover {
+    transform: translateY(-4px);
+  }
+
+  .movie-card:hover .movie-poster img {
+    transform: scale(1.03);
+
+    filter: none;
+  }
+}
+
+/* =====================================================
+   SMALL PHONE
+===================================================== */
+
+@media (max-width: 380px) {
+
+  .movie-card {
+    border-radius: 10px;
+  }
+
+  .movie-card-info {
+    padding: 9px;
+  }
+
+  .movie-title-row h3 {
+    font-size: 11px;
+  }
+
+  .movie-rating {
+    font-size: 8px;
+
+    padding:
+      3px 5px;
+  }
+
+  .movie-year {
+    font-size: 10px;
+  }
+
+  .movie-actions {
+    margin-top: 9px;
+  }
+
+  .details-btn {
+    min-height: 32px;
+
+    font-size: 10px;
+  }
+}
+
+/* =====================================================
+   VERY SMALL PHONE
+===================================================== */
+
+@media (max-width: 320px) {
+
+  .movie-card-info {
+    padding: 8px;
+  }
+
+  .movie-title-row h3 {
+    font-size: 10px;
+  }
+
+  .movie-year {
+    font-size: 9px;
+  }
+
+  .details-btn {
+    min-height: 30px;
+
+    font-size: 9px;
+  }
+}
+
+/* =====================================================
+   REDUCED MOTION
+===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .movie-card,
+  .movie-poster img,
+  .details-btn {
+    transition: none;
+  }
+}

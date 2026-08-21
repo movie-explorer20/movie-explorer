@@ -1,0 +1,317 @@
+/* =========================================
+   MOVIE EXPLORER - GENRES
+========================================= */
+
+.genres-page {
+  min-height: calc(100vh - 80px);
+  padding: 90px 0 110px;
+  background:
+    radial-gradient(
+      circle at 10% 0%,
+      rgba(245, 197, 24, 0.08),
+      transparent 30%
+    ),
+    #0b0b0f;
+}
+
+.genres-container {
+  width: min(1200px, 92%);
+  margin: 0 auto;
+}
+
+/* =========================================
+   HEADER
+========================================= */
+
+.genres-header {
+  margin-bottom: 42px;
+  max-width: 720px;
+}
+
+.genres-label {
+  display: inline-block;
+  margin-bottom: 12px;
+  color: #f5c518;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 3px;
+}
+
+.genres-header h1 {
+  margin: 0 0 14px;
+  color: #ffffff;
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  line-height: 0.95;
+  letter-spacing: -2px;
+}
+
+.genres-header p {
+  margin: 0;
+  max-width: 650px;
+  color: #92929c;
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+/* =========================================
+   GRID
+========================================= */
+
+.genres-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+/* =========================================
+   GENRE CARD
+========================================= */
+
+.genre-card {
+  position: relative;
+  min-height: 210px;
+  overflow: hidden;
+
+  display: flex;
+  align-items: flex-end;
+
+  border: 1px solid #292930;
+  border-radius: 16px;
+
+  background-color: #15151a;
+  background-position: center;
+  background-size: cover;
+
+  text-decoration: none;
+
+  transition:
+    transform 0.35s ease,
+    border-color 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+.genre-card:hover {
+  transform: translateY(-7px);
+  border-color: #f5c518;
+  box-shadow:
+    0 20px 45px rgba(0, 0, 0, 0.45),
+    0 0 25px rgba(245, 197, 24, 0.08);
+}
+
+/* =========================================
+   IMAGE OVERLAY
+========================================= */
+
+.genre-overlay {
+  position: absolute;
+  inset: 0;
+
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.08),
+      rgba(0, 0, 0, 0.25) 35%,
+      rgba(0, 0, 0, 0.92) 100%
+    );
+
+  transition:
+    background 0.35s ease;
+}
+
+.genre-card:hover .genre-overlay {
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.15),
+      rgba(0, 0, 0, 0.38) 35%,
+      rgba(0, 0, 0, 0.94) 100%
+    );
+}
+
+/* =========================================
+   CONTENT
+========================================= */
+
+.genre-content {
+  position: relative;
+  z-index: 2;
+
+  width: 100%;
+  padding: 22px;
+
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: end;
+  gap: 12px;
+}
+
+.genre-number {
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.genre-name {
+  color: #ffffff;
+  font-size: 21px;
+  font-weight: 800;
+  line-height: 1.1;
+
+  text-shadow:
+    0 2px 12px rgba(0, 0, 0, 0.8);
+}
+
+.genre-arrow {
+  width: 34px;
+  height: 34px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 50%;
+
+  color: #ffffff;
+  background: rgba(0, 0, 0, 0.35);
+
+  font-size: 18px;
+
+  transition:
+    transform 0.3s ease,
+    background 0.3s ease,
+    color 0.3s ease;
+}
+
+.genre-card:hover .genre-arrow {
+  transform: translateX(4px);
+  background: #f5c518;
+  color: #111111;
+  border-color: #f5c518;
+}
+
+/* =========================================
+   SKELETON
+========================================= */
+
+.genre-skeleton {
+  min-height: 210px;
+  border-radius: 16px;
+
+  background:
+    linear-gradient(
+      110deg,
+      #15151a 25%,
+      #202027 37%,
+      #15151a 63%
+    );
+
+  background-size: 400% 100%;
+
+  animation: genreSkeleton 1.5s ease infinite;
+}
+
+@keyframes genreSkeleton {
+  0% {
+    background-position: 100% 0;
+  }
+
+  100% {
+    background-position: -100% 0;
+  }
+}
+
+/* =========================================
+   ERROR
+========================================= */
+
+.genres-error {
+  margin-top: 25px;
+  padding: 20px;
+
+  border: 1px solid #3b3030;
+  border-radius: 12px;
+
+  color: #ff8f8f;
+  background: rgba(255, 70, 70, 0.06);
+}
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 900px) {
+  .genres-page {
+    padding: 70px 0 90px;
+  }
+
+  .genres-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .genre-card {
+    min-height: 200px;
+  }
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+  .genres-page {
+    padding: 55px 0 75px;
+  }
+
+  .genres-container {
+    width: min(92%, 500px);
+  }
+
+  .genres-header {
+    margin-bottom: 28px;
+  }
+
+  .genres-label {
+    font-size: 10px;
+    letter-spacing: 2px;
+  }
+
+  .genres-header h1 {
+    font-size: 2.7rem;
+    letter-spacing: -1.5px;
+  }
+
+  .genres-header p {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  .genres-grid {
+    grid-template-columns: 1fr;
+    gap: 13px;
+  }
+
+  .genre-card {
+    min-height: 175px;
+    border-radius: 13px;
+  }
+
+  .genre-content {
+    padding: 17px;
+  }
+
+  .genre-name {
+    font-size: 19px;
+  }
+
+  .genre-arrow {
+    width: 32px;
+    height: 32px;
+  }
+
+  .genre-skeleton {
+    min-height: 175px;
+    border-radius: 13px;
+  }
+}
