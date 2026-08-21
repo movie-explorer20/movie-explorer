@@ -1,4 +1,3 @@
-
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 import Navbar from './components/Navbar/Navbar'
@@ -18,86 +17,50 @@ import Register from './components/Register/Register'
 
 import './App.css'
 
-/* =====================================================
-   HOME PAGE
-===================================================== */
-
 function Home() {
   return (
     <>
       <HeroMovie />
-
       <TrendingMovies />
-
       <RecentlyViewed />
     </>
   )
 }
 
-/* =====================================================
-   APP
-===================================================== */
-
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/movie-explorer">
       <div className="app">
 
-        {/* NAVBAR */}
         <Navbar />
 
-        {/* ROUTES */}
         <Routes>
 
-          {/* HOME */}
-          <Route
-            path="/"
-            element={<Home />}
-          />
+          <Route path="/" element={<Home />} />
 
-          {/* MOVIES */}
-          <Route
-            path="/movies"
-            element={<Movies />}
-          />
+          <Route path="/movies" element={<Movies />} />
 
-          {/* GENRES */}
-          <Route
-            path="/genres"
-            element={<Genres />}
-          />
+          <Route path="/genres" element={<Genres />} />
 
-          {/* WATCHLIST */}
-          <Route
-            path="/watchlist"
-            element={<Watchlist />}
-          />
+          <Route path="/watchlist" element={<Watchlist />} />
 
-          {/* FAVORITES */}
-          <Route
-            path="/favorites"
-            element={<Favorites />}
-          />
+          <Route path="/favorites" element={<Favorites />} />
 
-          {/* MOVIE DETAILS */}
           <Route
             path="/movie/:id"
             element={<MovieDetails />}
           />
 
-          {/* SEARCH */}
           <Route
             path="/search"
             element={<SearchMovies />}
           />
 
-          {/* LOGIN */}
           <Route
             path="/login"
             element={<Login />}
           />
 
-          {/* REGISTER */}
           <Route
             path="/register"
             element={<Register />}
@@ -111,4 +74,3 @@ function App() {
 }
 
 export default App
-
