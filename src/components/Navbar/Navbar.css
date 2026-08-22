@@ -1,7 +1,14 @@
-/* =====================================================
-   MOVIE EXPLORER
-   PREMIUM RESPONSIVE NAVBAR
-   ===================================================== */
+/* =========================================================
+   MOVIE EXPLORER — PREMIUM NAVBAR
+   ========================================================= */
+
+* {
+  box-sizing: border-box;
+}
+
+/* =========================================================
+   MAIN NAVBAR
+   ========================================================= */
 
 .movie-navbar {
   position: fixed;
@@ -26,16 +33,16 @@
   background:
     linear-gradient(
       135deg,
-      rgba(25, 25, 30, 0.98),
-      rgba(10, 10, 14, 0.98)
+      rgba(25, 25, 31, 0.98),
+      rgba(9, 9, 13, 0.98)
     );
 
   border: 1px solid rgba(255, 255, 255, 0.09);
   border-radius: 20px;
 
   box-shadow:
-    0 20px 55px rgba(0, 0, 0, 0.48),
-    0 4px 15px rgba(0, 0, 0, 0.25),
+    0 22px 60px rgba(0, 0, 0, 0.5),
+    0 5px 18px rgba(0, 0, 0, 0.25),
     inset 0 1px 0 rgba(255, 255, 255, 0.05);
 
   backdrop-filter: blur(24px);
@@ -44,9 +51,9 @@
   pointer-events: auto;
 }
 
-/* =====================================================
+/* =========================================================
    LOGO
-   ===================================================== */
+   ========================================================= */
 
 .movie-logo {
   display: flex;
@@ -77,7 +84,7 @@
   background:
     linear-gradient(
       145deg,
-      #ffe066,
+      #ffe36a,
       #f5c518
     );
 
@@ -87,18 +94,18 @@
   font-weight: 900;
 
   box-shadow:
-    0 8px 24px rgba(245, 197, 24, 0.16);
+    0 8px 25px rgba(245, 197, 24, 0.2);
 
   transition:
-    transform 0.3s ease,
-    box-shadow 0.3s ease;
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
 }
 
 .movie-logo:hover .logo-icon {
-  transform: scale(1.06) rotate(-4deg);
+  transform: scale(1.06) rotate(-3deg);
 
   box-shadow:
-    0 10px 30px rgba(245, 197, 24, 0.3);
+    0 10px 30px rgba(245, 197, 24, 0.35);
 }
 
 .logo-content {
@@ -112,7 +119,6 @@
 
   font-size: 15px;
   font-weight: 900;
-
   letter-spacing: 2px;
 }
 
@@ -122,14 +128,13 @@
   color: #f5c518;
 
   font-size: 8px;
-  font-weight: 800;
-
+  font-weight: 900;
   letter-spacing: 4px;
 }
 
-/* =====================================================
+/* =========================================================
    NAVIGATION
-   ===================================================== */
+   ========================================================= */
 
 .movie-nav {
   flex: 1;
@@ -139,30 +144,29 @@
   justify-content: center;
 
   gap: 4px;
-
   min-width: 0;
 }
 
 .nav-item {
   position: relative;
 
-  min-width: 92px;
-  height: 54px;
+  min-width: 88px;
+  height: 52px;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
   gap: 7px;
-  padding: 0 14px;
+  padding: 0 13px;
 
   border-radius: 14px;
 
-  color: #9898a3;
+  color: #92939d;
   text-decoration: none;
 
   font-size: 13px;
-  font-weight: 650;
+  font-weight: 700;
 
   transition:
     color 0.25s ease,
@@ -179,7 +183,7 @@
   align-items: center;
   justify-content: center;
 
-  color: #9999a5;
+  color: #92939d;
 
   font-size: 16px;
 
@@ -202,9 +206,9 @@
   transform: translateY(-2px);
 }
 
-/* =====================================================
-   ACTIVE NAV
-   ===================================================== */
+/* =========================================================
+   ACTIVE NAVIGATION
+   ========================================================= */
 
 .nav-item.active {
   color: #111111;
@@ -212,180 +216,41 @@
   background:
     linear-gradient(
       145deg,
-      #ffe066,
+      #ffe36a,
       #f5c518
     );
 
-  transform: translateY(-2px);
+  transform: translateY(-1px);
 
   box-shadow:
-    0 8px 24px rgba(245, 197, 24, 0.17);
+    0 8px 25px rgba(245, 197, 24, 0.2);
 }
 
 .nav-item.active .nav-icon {
   color: #111111;
 }
 
-.nav-item.active::after {
-  content: '';
-
-  position: absolute;
-
-  left: 50%;
-  bottom: -6px;
-
-  width: 28px;
-  height: 3px;
-
-  transform: translateX(-50%);
-
-  background: #f5c518;
-
-  border-radius: 50%;
-
-  filter: blur(3px);
-
-  opacity: 0.8;
-}
-
-/* =====================================================
-   SEARCH
-   ===================================================== */
+/* =========================================================
+   SEARCH BUTTON — CLEAN PREMIUM
+   ========================================================= */
 
 .search-link {
-  min-width: 105px;
+  position: relative;
+
+  min-width: 112px;
   height: 44px;
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  gap: 7px;
-
-  margin-left: 8px;
-
-  color: #eeeeee;
-
-  background: rgba(255, 255, 255, 0.035);
-
-  border: 1px solid rgba(255, 255, 255, 0.1);
-
-  border-radius: 50px;
-
-  text-decoration: none;
-
-  font-size: 13px;
-  font-weight: 700;
-
-  transition:
-    background 0.25s ease,
-    color 0.25s ease,
-    border-color 0.25s ease,
-    transform 0.25s ease,
-    box-shadow 0.25s ease;
-}
-
-.search-icon {
-  font-size: 21px;
-  line-height: 1;
-}
-
-.search-link:hover {
-  color: #111111;
-
-  background: #f5c518;
-
-  border-color: #f5c518;
-
-  transform: translateY(-2px);
-
-  box-shadow:
-    0 8px 23px rgba(245, 197, 24, 0.2);
-}
-
-.search-link.active {
-  color: #111111;
-
-  background:
-    linear-gradient(
-      145deg,
-      #ffe066,
-      #f5c518
-    );
-
-  border-color: #f5c518;
-
-  box-shadow:
-    0 8px 23px rgba(245, 197, 24, 0.18);
-}
-
-/* =====================================================
-   WATCHLIST COUNT
-   ===================================================== */
-
-.watchlist-count {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-
-  min-width: 18px;
-  height: 18px;
-
-  margin-left: 5px;
-  padding: 0 5px;
-
-  border-radius: 999px;
-
-  background: #f5c518;
-  color: #111111;
-
-  font-size: 10px;
-  font-weight: 900;
-
-  line-height: 1;
-
-  box-shadow:
-    0 3px 10px rgba(245, 197, 24, 0.2);
-}
-
-.nav-item.active .watchlist-count {
-  background: #111111;
-  color: #f5c518;
-}
-
-/* =====================================================
-   NAVBAR ACTIONS
-   ===================================================== */
-
-.navbar-actions {
-  display: flex;
-  align-items: center;
-
-  gap: 12px;
-
-  margin-left: auto;
-
-  flex-shrink: 0;
-}
-
-/* =====================================================
-   LOGIN BUTTON
-   ===================================================== */
-
-.login-nav-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
 
   gap: 8px;
 
-  min-height: 40px;
+  margin-left: 8px;
+  padding: 0 18px;
 
-  padding: 0 16px;
-
-  border: 1px solid rgba(245, 197, 24, 0.35);
-
-  border-radius: 10px;
+  border: 1px solid rgba(245, 197, 24, 0.45);
+  border-radius: 14px;
 
   background: rgba(245, 197, 24, 0.08);
 
@@ -396,40 +261,455 @@
   font-size: 13px;
   font-weight: 800;
 
+  box-shadow:
+    0 6px 18px rgba(245, 197, 24, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+
   transition:
-    background 0.2s ease,
-    color 0.2s ease,
-    transform 0.2s ease,
-    border-color 0.2s ease;
+    background 0.25s ease,
+    color 0.25s ease,
+    border-color 0.25s ease,
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+
+/* =========================================================
+   SEARCH ICON
+   ========================================================= */
+
+.search-icon {
+  width: 21px;
+  height: 21px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  color: #f5c518;
+
+  font-size: 17px;
+  line-height: 1;
+
+  transition:
+    color 0.25s ease,
+    transform 0.25s ease;
+}
+
+
+/* =========================================================
+   SEARCH TEXT
+   ========================================================= */
+
+.search-text {
+  display: inline-flex;
+  align-items: center;
+
+  color: inherit;
+
+  line-height: 1;
+}
+
+
+/* =========================================================
+   SEARCH HOVER
+   ========================================================= */
+
+.search-link:hover {
+  color: #111111;
+
+  background:
+    linear-gradient(
+      135deg,
+      #ffe36a,
+      #f5c518
+    );
+
+  border-color: #f5c518;
+
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 10px 26px rgba(245, 197, 24, 0.25);
+}
+
+.search-link:hover .search-icon {
+  color: #111111;
+
+  transform: scale(1.08);
+}
+
+
+/* =========================================================
+   SEARCH ACTIVE
+   ========================================================= */
+
+.search-link.active {
+  color: #111111;
+
+  background:
+    linear-gradient(
+      135deg,
+      #ffe36a,
+      #f5c518
+    );
+
+  border-color: #f5c518;
+
+  box-shadow:
+    0 8px 24px rgba(245, 197, 24, 0.22);
+}
+
+.search-link.active .search-icon {
+  color: #111111;
+}
+
+
+/* =========================================================
+   MOBILE SEARCH
+   ========================================================= */
+
+@media (max-width: 760px) {
+
+  .search-link {
+    width: 43px;
+    min-width: 43px;
+    height: 43px;
+
+    margin-left: 0;
+    padding: 0;
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 13px;
+  }
+
+  .search-icon {
+    width: 22px;
+    height: 22px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 20px;
+
+    color: #f5c518;
+  }
+
+  .search-text {
+    display: none;
+  }
+
+  .search-link:hover,
+  .search-link.active {
+    background:
+      linear-gradient(
+        135deg,
+        #ffe36a,
+        #f5c518
+      );
+
+    transform: translateY(-2px);
+
+    box-shadow:
+      0 9px 24px rgba(245, 197, 24, 0.28);
+  }
+
+  .search-link:hover .search-icon,
+  .search-link.active .search-icon {
+    color: #111111;
+
+    transform: scale(1.08);
+  }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 430px) {
+
+  .search-link {
+    width: 39px;
+    min-width: 39px;
+    height: 39px;
+
+    border-radius: 12px;
+  }
+
+  .search-icon {
+    width: 20px;
+    height: 20px;
+
+    font-size: 18px;
+  }
+}
+
+
+/* =========================================================
+   EXTRA SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 360px) {
+
+  .search-link {
+    width: 37px;
+    min-width: 37px;
+    height: 37px;
+  }
+
+  .search-icon {
+    width: 19px;
+    height: 19px;
+
+    font-size: 17px;
+  }
+}
+
+/* =========================================================
+   SEARCH SHINE
+   ========================================================= */
+
+.search-link::before {
+  content: "";
+
+  position: absolute;
+
+  top: -20%;
+  left: -130%;
+
+  width: 60%;
+  height: 140%;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.30),
+      transparent
+    );
+
+  transform: skewX(-20deg);
+
+  transition: left 0.6s ease;
+
+  pointer-events: none;
+
+  z-index: 3;
+}
+
+.search-link:hover::before {
+  left: 150%;
+}
+
+/* =========================================================
+   SEARCH HOVER
+   ========================================================= */
+
+.search-link:hover {
+  color: #111111;
+
+  background:
+    linear-gradient(
+      135deg,
+      #ffe36a 0%,
+      #f5c518 55%,
+      #e7b400 100%
+    );
+
+  border-color: #f5c518;
+
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 12px 32px rgba(245, 197, 24, 0.30),
+    0 0 22px rgba(245, 197, 24, 0.14),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35);
+}
+
+/* =========================================================
+   SEARCH ACTIVE
+   ========================================================= */
+
+.search-link.active {
+  color: #111111;
+
+  background:
+    linear-gradient(
+      135deg,
+      #ffe36a 0%,
+      #f5c518 55%,
+      #e7b400 100%
+    );
+
+  border-color: #f5c518;
+
+  box-shadow:
+    0 10px 28px rgba(245, 197, 24, 0.25),
+    0 0 18px rgba(245, 197, 24, 0.10),
+    inset 0 1px 0 rgba(255, 255, 255, 0.30);
+}
+
+/* =========================================================
+   SEARCH ICON
+   ========================================================= */
+
+.search-icon {
+  position: relative;
+  z-index: 4;
+
+  width: 21px;
+  height: 21px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #f5c518;
+
+  font-size: 17px;
+  line-height: 1;
+
+  transition:
+    color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.search-link:hover .search-icon,
+.search-link.active .search-icon {
+  color: #111111;
+
+  transform:
+    scale(1.08)
+    rotate(-8deg);
+}
+
+/* =========================================================
+   SEARCH TEXT
+   ========================================================= */
+
+.search-text {
+  position: relative;
+  z-index: 4;
+
+  color: inherit;
+
+  line-height: 1;
+  letter-spacing: 0.2px;
+}
+
+/* =========================================================
+   WATCHLIST COUNT
+   ========================================================= */
+
+.watchlist-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 18px;
+  height: 18px;
+
+  margin-left: 3px;
+  padding: 0 5px;
+
+  border-radius: 999px;
+
+  background: #f5c518;
+  color: #111111;
+
+  font-size: 9px;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.nav-item.active .watchlist-count {
+  background: #111111;
+  color: #f5c518;
+}
+
+/* =========================================================
+   ACTIONS
+   ========================================================= */
+
+.navbar-actions {
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  margin-left: auto;
+
+  flex-shrink: 0;
+}
+
+/* =========================================================
+   LOGIN
+   ========================================================= */
+
+.login-nav-btn {
+  min-height: 40px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 7px;
+  padding: 0 15px;
+
+  border: 1px solid rgba(245, 197, 24, 0.35);
+  border-radius: 12px;
+
+  background: rgba(245, 197, 24, 0.07);
+
+  color: #f5c518;
+
+  text-decoration: none;
+
+  font-size: 12px;
+  font-weight: 800;
+
+  transition:
+    background 0.25s ease,
+    color 0.25s ease,
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
 }
 
 .login-nav-btn:hover,
 .login-nav-btn.active {
+  color: #111111;
+
   background: #f5c518;
 
   border-color: #f5c518;
 
-  color: #080808;
+  transform: translateY(-2px);
 
-  transform: translateY(-1px);
+  box-shadow:
+    0 8px 22px rgba(245, 197, 24, 0.22);
 }
 
 .login-nav-icon {
-  font-size: 12px;
+  font-size: 13px;
 }
 
-/* =====================================================
-   PROFILE WRAPPER
-   ===================================================== */
+/* =========================================================
+   PROFILE
+   ========================================================= */
 
 .profile-wrapper {
   position: relative;
   flex-shrink: 0;
 }
-
-/* =====================================================
-   PROFILE BUTTON
-   ===================================================== */
 
 .profile-button {
   display: flex;
@@ -437,8 +717,7 @@
   justify-content: center;
 
   gap: 7px;
-
-  padding: 3px;
+  padding: 2px;
 
   border: 0;
   outline: none;
@@ -446,19 +725,15 @@
   background: transparent;
 
   cursor: pointer;
-
   font-family: inherit;
 }
 
 .profile-button:focus-visible {
   outline: 2px solid #f5c518;
   outline-offset: 3px;
+
   border-radius: 50px;
 }
-
-/* =====================================================
-   PROFILE AVATAR
-   ===================================================== */
 
 .profile-avatar {
   width: 42px;
@@ -470,16 +745,13 @@
 
   overflow: hidden;
 
-  flex-shrink: 0;
-
   border: 2px solid #f5c518;
-
   border-radius: 50%;
 
   background:
     linear-gradient(
       145deg,
-      #ffe066,
+      #ffe36a,
       #f5c518
     );
 
@@ -500,32 +772,20 @@
   transform: scale(1.06);
 
   box-shadow:
-    0 8px 28px rgba(245, 197, 24, 0.4);
+    0 8px 28px rgba(245, 197, 24, 0.38);
 }
-
-/* PROFILE IMAGE */
 
 .profile-avatar[src] {
   object-fit: cover;
 }
 
-/* LARGE PROFILE */
-
 .profile-avatar.large {
   width: 48px;
   height: 48px;
-
-  flex-shrink: 0;
-
-  font-size: 18px;
 }
 
-/* =====================================================
-   PROFILE ARROW
-   ===================================================== */
-
 .profile-arrow {
-  color: #aaaab3;
+  color: #92939d;
 
   font-size: 8px;
 
@@ -538,9 +798,9 @@
   color: #f5c518;
 }
 
-/* =====================================================
+/* =========================================================
    PROFILE DROPDOWN
-   ===================================================== */
+   ========================================================= */
 
 .profile-dropdown {
   position: absolute;
@@ -553,30 +813,27 @@
   padding: 12px;
 
   border: 1px solid rgba(255, 255, 255, 0.1);
-
-  border-radius: 17px;
+  border-radius: 18px;
 
   background:
     linear-gradient(
       145deg,
-      rgba(30, 30, 36, 0.99),
-      rgba(10, 10, 14, 0.99)
+      rgba(29, 29, 36, 0.99),
+      rgba(9, 9, 13, 0.99)
     );
 
   box-shadow:
-    0 25px 60px rgba(0, 0, 0, 0.58),
-    0 5px 18px rgba(0, 0, 0, 0.25);
+    0 25px 60px rgba(0, 0, 0, 0.6);
 
   backdrop-filter: blur(25px);
   -webkit-backdrop-filter: blur(25px);
 
-  animation:
-    profile-dropdown-in 0.2s ease;
+  animation: profileDropdown 0.2s ease;
 
   overflow: hidden;
 }
 
-@keyframes profile-dropdown-in {
+@keyframes profileDropdown {
   from {
     opacity: 0;
     transform: translateY(-8px) scale(0.97);
@@ -588,9 +845,9 @@
   }
 }
 
-/* =====================================================
+/* =========================================================
    PROFILE HEADER
-   ===================================================== */
+   ========================================================= */
 
 .profile-header {
   display: flex;
@@ -621,9 +878,9 @@
 }
 
 .profile-user-info span {
-  overflow: hidden;
-
   margin-top: 5px;
+
+  overflow: hidden;
 
   color: #858995;
 
@@ -633,22 +890,21 @@
   white-space: nowrap;
 }
 
-/* =====================================================
-   DIVIDER
-   ===================================================== */
+/* =========================================================
+   PROFILE DIVIDER
+   ========================================================= */
 
 .profile-divider {
   height: 1px;
 
   margin: 8px 4px;
 
-  background:
-    rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.08);
 }
 
-/* =====================================================
+/* =========================================================
    PROFILE MENU
-   ===================================================== */
+   ========================================================= */
 
 .profile-menu-item,
 .logout-button {
@@ -659,7 +915,6 @@
   align-items: center;
 
   gap: 10px;
-
   padding: 0 12px;
 
   border: 0;
@@ -687,37 +942,30 @@
 }
 
 .profile-menu-item:hover {
-  background:
-    rgba(255, 255, 255, 0.065);
-
   color: #ffffff;
+
+  background: rgba(255, 255, 255, 0.065);
 
   transform: translateX(2px);
 }
-
-/* =====================================================
-   LOGOUT
-   ===================================================== */
 
 .logout-button {
   color: #ff7777;
 }
 
 .logout-button:hover {
-  background:
-    rgba(255, 70, 70, 0.1);
-
   color: #ff9999;
+
+  background: rgba(255, 70, 70, 0.1);
 
   transform: translateX(2px);
 }
 
-/* =====================================================
+/* =========================================================
    TABLET
-   ===================================================== */
+   ========================================================= */
 
 @media (max-width: 1100px) {
-
   .movie-navbar {
     padding: 0 14px;
   }
@@ -730,47 +978,36 @@
     min-width: 160px;
   }
 
-  .logo-content strong {
-    font-size: 14px;
-  }
-
-  .logo-content small {
-    font-size: 7px;
-  }
-
   .nav-item {
-    min-width: 78px;
+    min-width: 76px;
+
     padding: 0 9px;
+
     font-size: 12px;
   }
 
   .search-link {
-    min-width: 90px;
-  }
+    min-width: 96px;
 
-  .profile-user-info {
-    max-width: 105px;
+    padding: 0 13px;
   }
 }
 
-/* =====================================================
+/* =========================================================
    SMALL TABLET
-   ===================================================== */
+   ========================================================= */
 
 @media (max-width: 900px) {
-
   .movie-logo {
     min-width: 145px;
   }
 
   .nav-item {
-    min-width: 70px;
-    padding: 0 7px;
-    gap: 5px;
-  }
+    min-width: 68px;
 
-  .nav-icon {
-    font-size: 15px;
+    padding: 0 7px;
+
+    gap: 5px;
   }
 
   .nav-text {
@@ -778,40 +1015,23 @@
   }
 
   .search-link {
-    min-width: 82px;
-  }
-
-  .navbar-actions {
-    gap: 8px;
+    min-width: 86px;
   }
 
   .profile-user-info {
     display: none;
   }
-
-  .profile-avatar {
-    width: 40px;
-    height: 40px;
-  }
-
-  .profile-dropdown {
-    width: 270px;
-  }
-
-  .login-nav-btn {
-    padding: 0 12px;
-  }
 }
 
-/* =====================================================
+/* =========================================================
    MOBILE
-   ===================================================== */
+   ========================================================= */
 
 @media (max-width: 760px) {
-
   .movie-navbar {
-    top: 10px;
-    padding: 0 10px;
+    top: 9px;
+
+    padding: 0 9px;
   }
 
   .navbar-shell {
@@ -820,22 +1040,21 @@
     display: grid;
 
     grid-template-columns: 1fr auto;
-
     grid-template-rows: 56px 55px;
-
-    gap: 0;
 
     padding: 5px 8px 8px;
 
     border-radius: 19px;
   }
 
-  /* LOGO */
+  /* =====================================================
+     MOBILE LOGO
+     ===================================================== */
 
   .movie-logo {
     min-width: 0;
 
-    padding-left: 4px;
+    padding-left: 3px;
 
     gap: 8px;
   }
@@ -858,38 +1077,95 @@
     margin-top: 4px;
 
     font-size: 7px;
-
     letter-spacing: 3px;
   }
 
-  /* ACTIONS */
+  /* =====================================================
+     MOBILE ACTIONS
+     ===================================================== */
 
   .navbar-actions {
     gap: 7px;
   }
 
-  /* SEARCH */
+  /* =====================================================
+     MOBILE SEARCH BUTTON
+     ===================================================== */
 
   .search-link {
-    width: 42px;
-    min-width: 42px;
-
-    height: 42px;
+    width: 43px;
+    min-width: 43px;
+    height: 43px;
 
     margin-left: 0;
 
-    border-radius: 50%;
+    padding: 0;
+
+    border-radius: 13px;
+
+    background:
+      linear-gradient(
+        135deg,
+        rgba(255, 227, 106, 0.18),
+        rgba(245, 197, 24, 0.06)
+      );
+
+    border: 1px solid rgba(245, 197, 24, 0.42);
+
+    color: #ffe36a;
+
+    box-shadow:
+      0 7px 20px rgba(245, 197, 24, 0.10),
+      inset 0 1px 0 rgba(255, 227, 106, 0.14);
+  }
+
+  .search-link:hover,
+  .search-link.active {
+    background:
+      linear-gradient(
+        135deg,
+        #ffe36a 0%,
+        #f5c518 60%,
+        #e7b400 100%
+      );
+
+    border-color: #f5c518;
+
+    color: #111111;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+      0 11px 28px rgba(245, 197, 24, 0.30),
+      0 0 18px rgba(245, 197, 24, 0.12),
+      inset 0 1px 0 rgba(255, 255, 255, 0.30);
+  }
+
+  .search-icon {
+    width: 22px;
+    height: 22px;
+
+    font-size: 20px;
+
+    color: #f5c518;
+  }
+
+  .search-link:hover .search-icon,
+  .search-link.active .search-icon {
+    color: #111111;
+
+    transform:
+      scale(1.08)
+      rotate(-8deg);
   }
 
   .search-text {
     display: none;
   }
 
-  .search-icon {
-    font-size: 21px;
-  }
-
-  /* PROFILE */
+  /* =====================================================
+     MOBILE PROFILE
+     ===================================================== */
 
   .profile-arrow {
     display: none;
@@ -906,17 +1182,19 @@
     padding: 1px;
   }
 
-  /* LOGIN */
+  /* =====================================================
+     MOBILE LOGIN
+     ===================================================== */
 
   .login-nav-btn {
-    width: 42px;
-    height: 42px;
+    width: 43px;
+    height: 43px;
 
-    min-height: 42px;
+    min-height: 43px;
 
     padding: 0;
 
-    border-radius: 50%;
+    border-radius: 13px;
   }
 
   .login-nav-btn span:last-child {
@@ -927,19 +1205,18 @@
     font-size: 17px;
   }
 
-  /* NAVIGATION */
+  /* =====================================================
+     MOBILE NAVIGATION
+     ===================================================== */
 
   .movie-nav {
     grid-column: 1 / -1;
-
     grid-row: 2;
 
     width: 100%;
 
     display: flex;
-
     align-items: center;
-
     justify-content: space-between;
 
     gap: 5px;
@@ -951,7 +1228,6 @@
     flex: 1;
 
     min-width: 0;
-
     height: 46px;
 
     flex-direction: column;
@@ -982,31 +1258,32 @@
     min-width: 15px;
     height: 15px;
 
-    margin-left: 3px;
+    margin-left: 2px;
 
     padding: 0 4px;
 
     font-size: 8px;
   }
 
-  /* DROPDOWN */
+  /* =====================================================
+     MOBILE DROPDOWN
+     ===================================================== */
 
   .profile-dropdown {
     position: fixed;
 
-    top: 78px;
-    right: 10px;
+    top: 77px;
+    right: 9px;
 
-    width: min(280px, calc(100vw - 20px));
+    width: min(280px, calc(100vw - 18px));
   }
 }
 
-/* =====================================================
+/* =========================================================
    SMALL MOBILE
-   ===================================================== */
+   ========================================================= */
 
 @media (max-width: 430px) {
-
   .movie-navbar {
     padding: 0 7px;
   }
@@ -1020,35 +1297,63 @@
   }
 
   .logo-icon {
-    width: 33px;
-    height: 33px;
+    width: 34px;
+    height: 34px;
 
     border-radius: 9px;
-
-    font-size: 13px;
   }
 
   .logo-content strong {
     font-size: 10px;
-
     letter-spacing: 1.3px;
   }
 
   .logo-content small {
     font-size: 6px;
-
     letter-spacing: 2px;
   }
 
-  .search-link {
-    width: 38px;
-    min-width: 38px;
+  /* =====================================================
+     SMALL MOBILE SEARCH
+     ===================================================== */
 
-    height: 38px;
+  .search-link {
+    width: 39px;
+    min-width: 39px;
+    height: 39px;
+
+    border-radius: 12px;
   }
 
   .search-icon {
-    font-size: 19px;
+    width: 20px;
+    height: 20px;
+
+    font-size: 18px;
+  }
+
+  /* =====================================================
+     SMALL MOBILE PROFILE
+     ===================================================== */
+
+  .profile-avatar {
+    width: 36px;
+    height: 36px;
+
+    font-size: 14px;
+  }
+
+  /* =====================================================
+     SMALL MOBILE LOGIN
+     ===================================================== */
+
+  .login-nav-btn {
+    width: 39px;
+    height: 39px;
+
+    min-height: 39px;
+
+    border-radius: 12px;
   }
 
   .movie-nav {
@@ -1071,29 +1376,17 @@
     font-size: 7px;
   }
 
-  .profile-avatar {
-    width: 35px;
-    height: 35px;
-
-    font-size: 14px;
-  }
-
   .profile-dropdown {
     top: 72px;
     right: 7px;
   }
-
-  .profile-header {
-    padding: 8px;
-  }
 }
 
-/* =====================================================
+/* =========================================================
    EXTRA SMALL MOBILE
-   ===================================================== */
+   ========================================================= */
 
 @media (max-width: 360px) {
-
   .movie-nav {
     gap: 2px;
   }
@@ -1121,16 +1414,27 @@
   }
 
   .profile-avatar {
-    width: 33px;
-    height: 33px;
+    width: 34px;
+    height: 34px;
 
     font-size: 13px;
   }
+
+  .search-link {
+    width: 37px;
+    min-width: 37px;
+    height: 37px;
+  }
+
+  .login-nav-btn {
+    width: 37px;
+    height: 37px;
+  }
 }
 
-/* =====================================================
+/* =========================================================
    ACCESSIBILITY
-   ===================================================== */
+   ========================================================= */
 
 .nav-item:focus-visible,
 .search-link:focus-visible,
@@ -1140,12 +1444,11 @@
   outline-offset: 3px;
 }
 
-/* =====================================================
+/* =========================================================
    REDUCED MOTION
-   ===================================================== */
+   ========================================================= */
 
 @media (prefers-reduced-motion: reduce) {
-
   .movie-logo,
   .logo-icon,
   .nav-item,
@@ -1155,7 +1458,7 @@
   .profile-dropdown,
   .profile-menu-item,
   .logout-button {
-    transition: none;
-    animation: none;
+    animation: none !important;
+    transition: none !important;
   }
 }
