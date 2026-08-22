@@ -1,7 +1,16 @@
-
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import './Register.css'
+
+const USER_KEY = 'movie-explorer-user'
+const ACCOUNT_KEY = 'movie-explorer-account'
+
+type RegisteredUser = {
+  name: string
+  email: string
+  loggedIn: boolean
+  loginMethod: string
+}
 
 function Register() {
   const navigate = useNavigate()
@@ -22,26 +31,54 @@ function Register() {
     useState(false)
 
   const [error, setError] = useState('')
+  const [isLoading, setIsLoading] =
+    useState(false)
+
+  /* =====================================================
+     REGISTER
+  ===================================================== */
 
   const handleRegister = (
-    event: React.FormEvent
+    event: React.FormEvent<HTMLFormElement>
   ) => {
     event.preventDefault()
 
     setError('')
 
-    if (!name.trim()) {
-      setError('Please enter your name.')
+    const cleanName = name.trim()
+    const cleanEmail = email.trim()
+
+    /* NAME */
+
+    if (!cleanName) {
+      setError(
+        'Please enter your name.'
+      )
       return
     }
 
-    if (!email.trim()) {
-      setError('Please enter your email address.')
+    /* EMAIL */
+
+    if (!cleanEmail) {
+      setError(
+        'Please enter your email address.'
+      )
       return
     }
+
+    if (!cleanEmail.includes('@')) {
+      setError(
+        'Please enter a valid email address.'
+      )
+      return
+    }
+
+    /* PASSWORD */
 
     if (!password) {
-      setError('Please enter a password.')
+      setError(
+        'Please enter a password.'
+      )
       return
     }
 
@@ -52,10 +89,23 @@ function Register() {
       return
     }
 
-    if (password !== confirmPassword) {
-      setError('Passwords do not match.')
+    /* CONFIRM PASSWORD */
+
+    if (!confirmPassword) {
+      setError(
+        'Please confirm your password.'
+      )
       return
     }
+
+    if (password !== confirmPassword) {
+      setError(
+        'Passwords do not match.'
+      )
+      return
+    }
+
+    /* TERMS */
 
     if (!agreeTerms) {
       setError(
@@ -64,32 +114,67 @@ function Register() {
       return
     }
 
+    setIsLoading(true)
+
     try {
-      const user = {
-        name: name.trim(),
-        email: email.trim(),
+
+      /*
+        Demo local registration.
+
+        Real authentication will later
+        be connected with Firebase.
+      */
+
+      const user: RegisteredUser = {
+        name: cleanName,
+        email: cleanEmail,
         loggedIn: true,
+        loginMethod: 'email',
       }
 
+      /* Save logged-in user */
+
       localStorage.setItem(
-        'movie-explorer-user',
+        USER_KEY,
         JSON.stringify(user)
       )
 
+      /* Save account information */
+
       localStorage.setItem(
-        'movie-explorer-account',
+        ACCOUNT_KEY,
         JSON.stringify({
-          name: name.trim(),
-          email: email.trim(),
+          name: cleanName,
+          email: cleanEmail,
         })
       )
 
-      navigate('/')
-    } catch (err) {
+      /* Notify Navbar */
+
+      window.dispatchEvent(
+        new Event('userUpdated')
+      )
+
+      /*
+        Navigate after successful registration.
+      */
+
+      setTimeout(() => {
+        setIsLoading(false)
+
+        navigate('/', {
+          replace: true,
+        })
+      }, 500)
+
+    } catch (error) {
+
       console.error(
         'Registration error:',
-        err
+        error
       )
+
+      setIsLoading(false)
 
       setError(
         'Something went wrong. Please try again.'
@@ -97,37 +182,118 @@ function Register() {
     }
   }
 
+  /* =====================================================
+     GOOGLE REGISTER
+  ===================================================== */
+
   const handleGoogleRegister = () => {
-    alert(
-      'Google registration will be connected with Google OAuth next.'
-    )
+    setError('')
+    setIsLoading(true)
+
+    /*
+      Demo Google registration.
+
+      Real Google OAuth will later be connected
+      with Firebase.
+    */
+
+    const googleUser: RegisteredUser = {
+      name: 'Google User',
+      email: 'google-user@movieexplorer.local',
+      loggedIn: true,
+      loginMethod: 'google',
+    }
+
+    try {
+
+      localStorage.setItem(
+        USER_KEY,
+        JSON.stringify(googleUser)
+      )
+
+      localStorage.setItem(
+        ACCOUNT_KEY,
+        JSON.stringify({
+          name: googleUser.name,
+          email: googleUser.email,
+        })
+      )
+
+      localStorage.setItem(
+        'movie-explorer-google-login',
+        'true'
+      )
+
+      /* Notify Navbar */
+
+      window.dispatchEvent(
+        new Event('userUpdated')
+      )
+
+      setTimeout(() => {
+        setIsLoading(false)
+
+        navigate('/', {
+          replace: true,
+        })
+      }, 500)
+
+    } catch (error) {
+
+      console.error(
+        'Google registration error:',
+        error
+      )
+
+      setIsLoading(false)
+
+      setError(
+        'Google registration failed. Please try again.'
+      )
+    }
   }
+
+  /* =====================================================
+     UI
+  ===================================================== */
 
   return (
     <main className="register-page">
 
-      {/* BACKGROUND */}
+      {/* =================================================
+          BACKGROUND
+      ================================================= */}
 
       <div className="register-background">
+
         <div className="register-glow register-glow-one" />
+
         <div className="register-glow register-glow-two" />
+
         <div className="register-grid" />
+
       </div>
 
-      {/* REGISTER CARD */}
+      {/* =================================================
+          REGISTER CARD
+      ================================================= */}
 
       <section className="register-card">
 
-        {/* HEADER */}
+        {/* =================================================
+            HEADER
+        ================================================= */}
 
         <div className="register-header">
 
           <Link
-            to="/"
+            to="/register"
             className="register-logo"
           >
             MOVIE
-            <span>EXPLORER</span>
+            <span>
+              EXPLORER
+            </span>
           </Link>
 
           <p className="register-eyebrow">
@@ -146,31 +312,9 @@ function Register() {
 
         </div>
 
-        {/* GOOGLE */}
-
-        <button
-          type="button"
-          className="google-register-btn"
-          onClick={handleGoogleRegister}
-        >
-          <span className="google-icon">
-            G
-          </span>
-
-          <span>
-            Continue with Google
-          </span>
-        </button>
-
-        {/* DIVIDER */}
-
-        <div className="register-divider">
-          <span />
-          <p>OR</p>
-          <span />
-        </div>
-
-        {/* ERROR */}
+        {/* =================================================
+            ERROR
+        ================================================= */}
 
         {error && (
           <div className="register-error">
@@ -178,7 +322,48 @@ function Register() {
           </div>
         )}
 
-        {/* FORM */}
+        {/* =================================================
+            GOOGLE
+        ================================================= */}
+
+        <button
+          type="button"
+          className="google-register-btn"
+          onClick={handleGoogleRegister}
+          disabled={isLoading}
+        >
+
+          <span className="google-icon">
+            G
+          </span>
+
+          <span>
+            {isLoading
+              ? 'Creating account...'
+              : 'Continue with Google'}
+          </span>
+
+        </button>
+
+        {/* =================================================
+            DIVIDER
+        ================================================= */}
+
+        <div className="register-divider">
+
+          <span />
+
+          <p>
+            OR
+          </p>
+
+          <span />
+
+        </div>
+
+        {/* =================================================
+            FORM
+        ================================================= */}
 
         <form
           className="register-form"
@@ -199,9 +384,13 @@ function Register() {
               placeholder="Enter your name"
               value={name}
               onChange={(event) =>
-                setName(event.target.value)
+                setName(
+                  event.target.value
+                )
               }
               autoComplete="name"
+              disabled={isLoading}
+              required
             />
 
           </div>
@@ -220,9 +409,13 @@ function Register() {
               placeholder="you@example.com"
               value={email}
               onChange={(event) =>
-                setEmail(event.target.value)
+                setEmail(
+                  event.target.value
+                )
               }
               autoComplete="email"
+              disabled={isLoading}
+              required
             />
 
           </div>
@@ -252,6 +445,8 @@ function Register() {
                   )
                 }
                 autoComplete="new-password"
+                disabled={isLoading}
+                required
               />
 
               <button
@@ -259,9 +454,11 @@ function Register() {
                 className="register-password-toggle"
                 onClick={() =>
                   setShowPassword(
-                    !showPassword
+                    (current) =>
+                      !current
                   )
                 }
+                disabled={isLoading}
                 aria-label={
                   showPassword
                     ? 'Hide password'
@@ -306,6 +503,8 @@ function Register() {
                   )
                 }
                 autoComplete="new-password"
+                disabled={isLoading}
+                required
               />
 
               <button
@@ -313,9 +512,11 @@ function Register() {
                 className="register-password-toggle"
                 onClick={() =>
                   setShowConfirmPassword(
-                    !showConfirmPassword
+                    (current) =>
+                      !current
                   )
                 }
+                disabled={isLoading}
                 aria-label={
                   showConfirmPassword
                     ? 'Hide password'
@@ -331,7 +532,9 @@ function Register() {
 
           </div>
 
-          {/* TERMS */}
+          {/* =================================================
+              TERMS
+          ================================================= */}
 
           <label className="register-terms">
 
@@ -343,6 +546,7 @@ function Register() {
                   event.target.checked
                 )
               }
+              disabled={isLoading}
             />
 
             <span>
@@ -352,18 +556,25 @@ function Register() {
 
           </label>
 
-          {/* SUBMIT */}
+          {/* =================================================
+              SUBMIT
+          ================================================= */}
 
           <button
             type="submit"
             className="register-submit"
+            disabled={isLoading}
           >
-            Create Account
+            {isLoading
+              ? 'Creating account...'
+              : 'Create Account'}
           </button>
 
         </form>
 
-        {/* LOGIN */}
+        {/* =================================================
+            LOGIN
+        ================================================= */}
 
         <div className="register-login">
 
@@ -377,10 +588,12 @@ function Register() {
 
         </div>
 
-        {/* BACK HOME */}
+        {/* =================================================
+            BACK HOME
+        ================================================= */}
 
         <Link
-          to="/"
+          to="/login"
           className="register-back-home"
         >
           ← Back to Movie Explorer

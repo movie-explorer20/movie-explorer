@@ -1,22 +1,55 @@
-
 import { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import './Login.css'
 
 const USER_KEY = 'movie-explorer-user'
 const REMEMBER_KEY = 'movie-explorer-remember'
 
+type LoginUser = {
+  name?: string
+  email: string
+  loggedIn: boolean
+  loginMethod: string
+}
+
 function Login() {
   const navigate = useNavigate()
+  const location = useLocation()
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+
   const [showPassword, setShowPassword] =
     useState(false)
+
   const [rememberMe, setRememberMe] =
     useState(false)
+
   const [isLoading, setIsLoading] =
     useState(false)
+
+  const [error, setError] =
+    useState('')
+
+  /* =====================================================
+     WHERE TO GO AFTER LOGIN
+  ===================================================== */
+
+  const getRedirectPath = () => {
+    const state = location.state as
+      | { from?: string }
+      | null
+
+    if (
+      state?.from &&
+      state.from !== '/login' &&
+      state.from !== '/register'
+    ) {
+      return state.from
+    }
+
+    return '/'
+  }
 
   /* =====================================================
      NORMAL LOGIN
@@ -27,17 +60,19 @@ function Login() {
   ) => {
     event.preventDefault()
 
+    setError('')
+
     const cleanEmail = email.trim()
 
     if (!cleanEmail || !password) {
-      alert(
+      setError(
         'Please enter your email and password.'
       )
       return
     }
 
     if (!cleanEmail.includes('@')) {
-      alert(
+      setError(
         'Please enter a valid email address.'
       )
       return
@@ -46,38 +81,70 @@ function Login() {
     setIsLoading(true)
 
     /*
-      Temporary local authentication.
+      Demo local authentication.
 
-      Later this can be replaced with
-      your real backend authentication.
+      This will later be replaced with
+      Firebase Authentication.
     */
 
-    const user = {
+    const user: LoginUser = {
       email: cleanEmail,
       loggedIn: true,
       loginMethod: 'email',
     }
 
-    localStorage.setItem(
-      USER_KEY,
-      JSON.stringify(user)
-    )
-
-    if (rememberMe) {
+    try {
       localStorage.setItem(
-        REMEMBER_KEY,
-        'true'
+        USER_KEY,
+        JSON.stringify(user)
       )
-    } else {
-      localStorage.removeItem(
-        REMEMBER_KEY
+
+      /* Notify Navbar */
+
+      window.dispatchEvent(
+        new Event('userUpdated')
+      )
+
+      /* Remember me */
+
+      if (rememberMe) {
+        localStorage.setItem(
+          REMEMBER_KEY,
+          'true'
+        )
+      } else {
+        localStorage.removeItem(
+          REMEMBER_KEY
+        )
+      }
+
+      /*
+        Small delay for nice loading effect.
+      */
+
+      setTimeout(() => {
+        setIsLoading(false)
+
+        navigate(
+          getRedirectPath(),
+          {
+            replace: true,
+          }
+        )
+      }, 500)
+
+    } catch (error) {
+      console.error(
+        'Login error:',
+        error
+      )
+
+      setIsLoading(false)
+
+      setError(
+        'Something went wrong. Please try again.'
       )
     }
-
-    setTimeout(() => {
-      setIsLoading(false)
-      navigate('/')
-    }, 500)
   }
 
   /* =====================================================
@@ -85,30 +152,63 @@ function Login() {
   ===================================================== */
 
   const handleGoogleLogin = () => {
-    /*
-      This is currently a demo login.
+    setError('')
+    setIsLoading(true)
 
-      Real Google OAuth will be connected later
-      with Firebase or Google Identity Services.
+    /*
+      DEMO Google login.
+
+      Real Google OAuth will be connected
+      with Firebase later.
     */
 
-    const googleUser = {
+    const googleUser: LoginUser = {
+      name: 'Google User',
       email: 'google-user@movieexplorer.local',
       loggedIn: true,
       loginMethod: 'google',
     }
 
-    localStorage.setItem(
-      USER_KEY,
-      JSON.stringify(googleUser)
-    )
+    try {
+      localStorage.setItem(
+        USER_KEY,
+        JSON.stringify(googleUser)
+      )
 
-    localStorage.setItem(
-      'movie-explorer-google-login',
-      'true'
-    )
+      localStorage.setItem(
+        'movie-explorer-google-login',
+        'true'
+      )
 
-    navigate('/')
+      /* Notify Navbar */
+
+      window.dispatchEvent(
+        new Event('userUpdated')
+      )
+
+      setTimeout(() => {
+        setIsLoading(false)
+
+        navigate(
+          getRedirectPath(),
+          {
+            replace: true,
+          }
+        )
+      }, 500)
+
+    } catch (error) {
+      console.error(
+        'Google login error:',
+        error
+      )
+
+      setIsLoading(false)
+
+      setError(
+        'Google login failed. Please try again.'
+      )
+    }
   }
 
   /* =====================================================
@@ -116,15 +216,19 @@ function Login() {
   ===================================================== */
 
   const handleForgotPassword = () => {
-    if (!email.trim()) {
-      alert(
+    const cleanEmail = email.trim()
+
+    if (!cleanEmail) {
+      setError(
         'Please enter your email address first.'
       )
       return
     }
 
+    setError('')
+
     alert(
-      `Password reset for ${email.trim()} will be available when the backend authentication is connected.`
+      `Password reset for ${cleanEmail} will be available when real authentication is connected.`
     )
   }
 
@@ -135,27 +239,38 @@ function Login() {
   return (
     <main className="login-page">
 
-      {/* BACKGROUND */}
+      {/* =================================================
+          BACKGROUND
+      ================================================= */}
 
       <div className="login-background">
+
         <div className="login-glow login-glow-one" />
+
         <div className="login-glow login-glow-two" />
+
       </div>
 
-      {/* LOGIN CARD */}
+      {/* =================================================
+          LOGIN CARD
+      ================================================= */}
 
       <section className="login-card">
 
-        {/* HEADER */}
+        {/* =================================================
+            HEADER
+        ================================================= */}
 
         <div className="login-header">
 
           <Link
-            to="/"
+            to="/login"
             className="login-logo"
           >
             MOVIE
-            <span>EXPLORER</span>
+            <span>
+              EXPLORER
+            </span>
           </Link>
 
           <p className="login-eyebrow">
@@ -174,6 +289,16 @@ function Login() {
         </div>
 
         {/* =================================================
+            ERROR
+        ================================================= */}
+
+        {error && (
+          <div className="login-error">
+            {error}
+          </div>
+        )}
+
+        {/* =================================================
             GOOGLE LOGIN
         ================================================= */}
 
@@ -183,6 +308,7 @@ function Login() {
           onClick={handleGoogleLogin}
           disabled={isLoading}
         >
+
           <span
             className="google-icon"
             aria-hidden="true"
@@ -191,16 +317,27 @@ function Login() {
           </span>
 
           <span>
-            Continue with Google
+            {isLoading
+              ? 'Signing in...'
+              : 'Continue with Google'}
           </span>
+
         </button>
 
-        {/* DIVIDER */}
+        {/* =================================================
+            DIVIDER
+        ================================================= */}
 
         <div className="login-divider">
+
           <span />
-          <p>OR</p>
+
+          <p>
+            OR
+          </p>
+
           <span />
+
         </div>
 
         {/* =================================================
@@ -226,9 +363,12 @@ function Login() {
               placeholder="you@example.com"
               value={email}
               onChange={(event) =>
-                setEmail(event.target.value)
+                setEmail(
+                  event.target.value
+                )
               }
               autoComplete="email"
+              disabled={isLoading}
               required
             />
 
@@ -250,6 +390,7 @@ function Login() {
                 onClick={
                   handleForgotPassword
                 }
+                disabled={isLoading}
               >
                 Forgot password?
               </button>
@@ -273,6 +414,7 @@ function Login() {
                   )
                 }
                 autoComplete="current-password"
+                disabled={isLoading}
                 required
               />
 
@@ -281,9 +423,11 @@ function Login() {
                 className="show-password"
                 onClick={() =>
                   setShowPassword(
-                    (current) => !current
+                    (current) =>
+                      !current
                   )
                 }
+                disabled={isLoading}
                 aria-label={
                   showPassword
                     ? 'Hide password'
@@ -299,7 +443,9 @@ function Login() {
 
           </div>
 
-          {/* REMEMBER ME */}
+          {/* =================================================
+              REMEMBER ME
+          ================================================= */}
 
           <label className="remember-me">
 
@@ -311,6 +457,7 @@ function Login() {
                   event.target.checked
                 )
               }
+              disabled={isLoading}
             />
 
             <span>
@@ -319,7 +466,9 @@ function Login() {
 
           </label>
 
-          {/* SUBMIT */}
+          {/* =================================================
+              SUBMIT
+          ================================================= */}
 
           <button
             type="submit"
@@ -349,19 +498,21 @@ function Login() {
 
         </div>
 
-        {/* BACK HOME */}
+        {/* =================================================
+            BACK HOME
+        ================================================= */}
 
         <Link
-          to="/"
+          to="/login"
           className="back-home"
         >
           ← Back to Movie Explorer
         </Link>
 
       </section>
+
     </main>
   )
 }
 
 export default Login
-

@@ -1,11 +1,16 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+} from 'react-router-dom'
 
 import Navbar from './components/Navbar/Navbar'
+import ProtectedRoute from './components/ProtectedRoute'
+
 import HeroMovie from './components/HeroMovie/HeroMovie'
 import TrendingMovies from './components/TrendingMovies/TrendingMovies'
-import RecentlyViewed from './components/RecentlyViewed/RecentlyViewed'
-
 import MovieDetails from './components/MovieDetails/MovieDetails'
+
 import SearchMovies from './components/SearchMovies/SearchMovies'
 import Movies from './components/Movies/Movies'
 import Genres from './components/Genres/Genres'
@@ -15,61 +20,168 @@ import Favorites from './components/Favorites/Favorites'
 import Login from './components/Login/Login'
 import Register from './components/Register/Register'
 
-import './App.css'
-
 function Home() {
   return (
     <>
       <HeroMovie />
       <TrendingMovies />
-      <RecentlyViewed />
     </>
   )
 }
 
 function App() {
   return (
-    <BrowserRouter basename="/movie-explorer">
-      <div className="app">
+    <BrowserRouter>
 
-        <Navbar />
+      <Routes>
 
-        <Routes>
+        {/* =================================================
+            PUBLIC ROUTES
+        ================================================= */}
 
-          <Route path="/" element={<Home />} />
+        <Route
+          path="/login"
+          element={<Login />}
+        />
 
-          <Route path="/movies" element={<Movies />} />
+        <Route
+          path="/register"
+          element={<Register />}
+        />
 
-          <Route path="/genres" element={<Genres />} />
+        {/* =================================================
+            PROTECTED ROUTES
+            LOGIN REQUIRED
+        ================================================= */}
 
-          <Route path="/watchlist" element={<Watchlist />} />
+        <Route
+          element={<ProtectedRoute />}
+        >
 
-          <Route path="/favorites" element={<Favorites />} />
+          {/* HOME */}
 
           <Route
-            path="/movie/:id"
-            element={<MovieDetails />}
+            path="/"
+            element={
+              <>
+                <Navbar />
+                <Home />
+              </>
+            }
           />
+
+          {/* MOVIES */}
+
+          <Route
+            path="/movies"
+            element={
+              <>
+                <Navbar />
+                <Movies />
+              </>
+            }
+          />
+
+          {/* GENRES */}
+
+          <Route
+            path="/genres"
+            element={
+              <>
+                <Navbar />
+                <Genres />
+              </>
+            }
+          />
+
+          {/* WATCHLIST */}
+
+          <Route
+            path="/watchlist"
+            element={
+              <>
+                <Navbar />
+                <Watchlist />
+              </>
+            }
+          />
+
+          {/* FAVORITES */}
+
+          <Route
+            path="/favorites"
+            element={
+              <>
+                <Navbar />
+                <Favorites />
+              </>
+            }
+          />
+
+          {/* SEARCH */}
 
           <Route
             path="/search"
-            element={<SearchMovies />}
+            element={
+              <>
+                <Navbar />
+                <SearchMovies />
+              </>
+            }
           />
+
+          {/* MOVIE DETAILS */}
 
           <Route
-            path="/login"
-            element={<Login />}
+            path="/movie/:id"
+            element={
+              <>
+                <Navbar />
+                <MovieDetails />
+              </>
+            }
           />
 
-          <Route
-            path="/register"
-            element={<Register />}
-          />
+        </Route>
 
-        </Routes>
+        {/* UNKNOWN URL */}
 
-      </div>
+        <Route
+          path="*"
+          element={
+            <NavigateToHome />
+          }
+        />
+
+      </Routes>
+
     </BrowserRouter>
+  )
+}
+
+/*
+  Unknown routes go to Home.
+  ProtectedRoute will then send
+  logged-out users to Login.
+*/
+
+function NavigateToHome() {
+  return (
+    <div
+      style={{
+        minHeight: '100vh',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        background: '#080808',
+        color: '#fff',
+        fontFamily: 'Arial, sans-serif',
+      }}
+    >
+      <p>
+        Page not found.
+      </p>
+    </div>
   )
 }
 
