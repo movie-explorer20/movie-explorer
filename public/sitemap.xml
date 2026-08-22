@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <url>
+    <loc>https://movie-explorer20.github.io/movie-explorer/</loc>
+  </url>
+
+  <url>
+    <loc>https://movie-explorer20.github.io/movie-explorer/movies</loc>
+  </url>
+
+  <url>
+    <loc>https://movie-explorer20.github.io/movie-explorer/genres</loc>
+  </url>
+
+  <url>
+    <loc>https://movie-explorer20.github.io/movie-explorer/watchlist</loc>
+  </url>
+
+  <url>
+    <loc>https://movie-explorer20.github.io/movie-explorer/favorites</loc>
+  </url>
+
+  <url>
+    <loc>https://movie-explorer20.github.io/movie-explorer/search</loc>
+  </url>
+
+</urlset>
