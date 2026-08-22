@@ -1,7 +1,8 @@
 import {
-  BrowserRouter,
+  HashRouter,
   Routes,
   Route,
+  Navigate,
 } from 'react-router-dom'
 
 import Navbar from './components/Navbar/Navbar'
@@ -31,8 +32,7 @@ function Home() {
 
 function App() {
   return (
-    <BrowserRouter>
-
+    <HashRouter>
       <Routes>
 
         {/* =================================================
@@ -51,12 +51,9 @@ function App() {
 
         {/* =================================================
             PROTECTED ROUTES
-            LOGIN REQUIRED
         ================================================= */}
 
-        <Route
-          element={<ProtectedRoute />}
-        >
+        <Route element={<ProtectedRoute />}>
 
           {/* HOME */}
 
@@ -144,44 +141,22 @@ function App() {
 
         </Route>
 
-        {/* UNKNOWN URL */}
+        {/* =================================================
+            UNKNOWN ROUTE
+        ================================================= */}
 
         <Route
           path="*"
           element={
-            <NavigateToHome />
+            <Navigate
+              to="/"
+              replace
+            />
           }
         />
 
       </Routes>
-
-    </BrowserRouter>
-  )
-}
-
-/*
-  Unknown routes go to Home.
-  ProtectedRoute will then send
-  logged-out users to Login.
-*/
-
-function NavigateToHome() {
-  return (
-    <div
-      style={{
-        minHeight: '100vh',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        background: '#080808',
-        color: '#fff',
-        fontFamily: 'Arial, sans-serif',
-      }}
-    >
-      <p>
-        Page not found.
-      </p>
-    </div>
+    </HashRouter>
   )
 }
 
