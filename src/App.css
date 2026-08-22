@@ -1,5 +1,21 @@
-/* Movie Explorer - App Styles */
+/* =========================================
+   FIXED NAVBAR CONTENT OFFSET
+========================================= */
 
 .app {
-  min-height: 100vh;
+  padding-top: 110px;
+}
+
+/* Mobile */
+@media (max-width: 760px) {
+  .app {
+    padding-top: 145px;
+  }
+}
+
+/* Small mobile */
+@media (max-width: 430px) {
+  .app {
+    padding-top: 145px;
+  }
 }
